@@ -11,7 +11,10 @@ public class Application extends Controller {
 
     public static void index() {
         System.out.println("Hello Yabe");
-        render();
+        Post frontPost = Post.find("order by postedAt desc").first();
+        List<Post> olderPosts = Post.find("order by postedAt desc").from(1).fetch(10);
+
+        render(frontPost, olderPosts);
     }
 
 }
